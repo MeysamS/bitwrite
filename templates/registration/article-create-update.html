@@ -44,7 +44,6 @@
                             <!-- Form Group (phone number)-->
                             <div class="form-group col-md-6">
                                 {{ form.author|as_crispy_field }}
-                                {{ form.is_special|as_crispy_field }}
                             </div>
                             <!-- Form Group (birthday)-->
                             <div class="form-group col-md-6">
@@ -52,7 +51,7 @@
                             </div>                 
                         </div>
                     {% endif %}
-
+                    {{ form.is_special|as_crispy_field }}
                     <!-- Save changes button-->
                     <button class="btn btn-primary" type="submit">ارسال</button>
                     {% if object %}

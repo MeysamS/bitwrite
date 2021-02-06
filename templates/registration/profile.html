@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}پروفایل کاربر{% endblock  %}
+{% block content %}
+
+<div class="row">
+    <div class="col-xl-8 mx-auto">
+        <!-- Account details card-->
+        <div class="card mb-4 text-right">
+            <div class="card-header">پروفایل کاربر</div>
+            <div class="card-body">
+                <form enctype="multipart/form-data" method="post">
+                        {% csrf_token%}
+                    <!-- Form Row-->
+                    <div class="form-row">
+                        <!-- Form Group (first name)-->
+                        <div class="form-group col-md-6">
+                            {{form.username|as_crispy_field}}
+                        </div>
+                        <!-- Form Group (last name)-->
+                        <div class="form-group col-md-6">
+                            {{form.email|as_crispy_field}}
+                        </div>
+                    </div>
+                    <!-- Form Row        -->
+                    <div class="form-row">
+                        <!-- Form Group (organization name)-->
+                        <div class="form-group col-md-6">
+                            {{form.first_name|as_crispy_field}}
+                        </div>
+                        <!-- Form Group (location)-->
+                        <div class="form-group col-md-6">
+                            {{form.last_name|as_crispy_field}}
+                        </div>
+                    </div>       
+                    <!-- Form Row        -->
+                    <div class="form-row">
+                        <!-- Form Group (organization name)-->
+                        <div class="form-group col-md-6">
+                            {{form.special_user|as_crispy_field}}
+                        </div>
+                        <!-- Form Group (location)-->
+                        <div class="form-group col-md-6">
+                            {{form.is_author|as_crispy_field}}
+                        </div>
+                    </div>       
+                    <!-- Save changes button-->
+                    <button class="btn btn-primary" type="submit">ویزایش اطلاعات</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock  %}
