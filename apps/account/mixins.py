@@ -13,6 +13,7 @@ class FieldsMixin():
                            "description",
                            "thumbnail",
                            "published_at",
+                           "is_special",
                            "status"
                            ]
         elif request.user.is_author:
@@ -22,10 +23,11 @@ class FieldsMixin():
                 "category",
                 "description",
                 "thumbnail",
+                "is_special",
                 "published_at",
             ]
         else:
-            raise Http404("این صفحه برای شما قابل مشاهده نمی باشد")
+            raise Http404("این صفحه برای شما قابل مشاهده نمی باشد لطفا با مدیریت سایت درخواست نویسندگی بدهید")
 
         return super().dispatch(request, *args, **kwargs)
 

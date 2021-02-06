@@ -44,11 +44,12 @@
                             <!-- Form Group (phone number)-->
                             <div class="form-group col-md-6">
                                 {{ form.author|as_crispy_field }}
+                                {{ form.is_special|as_crispy_field }}
                             </div>
                             <!-- Form Group (birthday)-->
                             <div class="form-group col-md-6">
                                 {{ form.status|as_crispy_field }}
-                            </div>
+                            </div>                 
                         </div>
                     {% endif %}
 

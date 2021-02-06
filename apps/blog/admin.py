@@ -25,7 +25,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin): 
-    list_display = ('title', 'jpublished_at','status','author','category_to_str')
+    list_display = ('title', 'jpublished_at','is_special','status','author','category_to_str')
     list_filter = ('published_at','status','author')
     search_fields = ('title','description')
     prepopulated_fields = {'slug':('title',)}

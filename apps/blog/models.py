@@ -68,6 +68,8 @@ class Article(models.Model):
         default=timezone.now, verbose_name="زمان انتشار")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    is_special = models.BooleanField(
+        default=False, verbose_name="مقاله ویژه")
     status = models.CharField(
         max_length=1, choices=STATUS_CHOICES, verbose_name="وضعیت نمایش")
 

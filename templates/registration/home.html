@@ -23,7 +23,12 @@
                             <tr>
                                 <th scope="row">{{forloop.counter}}</th>
                                 <td>{{article.author.get_full_name}}</td>
-                                <td>{{article.title}}</td>
+                                <td>
+                                {% if article.is_special %}
+                                    <b><span class="badge badge-primary">ویژه</span><b>
+                                {% endif %}                                
+                                    {{article.title}}
+                                </td>
                                 <td>{{article.category_to_str}}</td>
                                 <td>{{article.jpublished_at}}</td>
                                 <td>
