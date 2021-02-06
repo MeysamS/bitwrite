@@ -109,6 +109,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+bitwrite_environment/
 
 # Spyder project settings
 .spyderproject
