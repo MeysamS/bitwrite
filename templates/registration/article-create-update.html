@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}افزودن مقاله{% endblock  %}
+{% block content %}
+
+<div class="row">
+    <div class="col-xl-8 mx-auto">
+        <!-- Account details card-->
+        <div class="card mb-4 text-right">
+            <div class="card-header">افزودن مقاله</div>
+            <div class="card-body">
+                <form enctype="multipart/form-data" method="post">
+                        {% csrf_token%}
+                    <!-- Form Row-->
+                    <div class="form-row">
+                        <!-- Form Group (first name)-->
+                        <div class="form-group col-md-6">
+                            {{form.title|as_crispy_field}}
+                        </div>
+                        <!-- Form Group (last name)-->
+                        <div class="form-group col-md-6">
+                            {{form.slug|as_crispy_field}}
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        {{form.description|as_crispy_field}}
+                    </div>
+                    <!-- Form Row        -->
+                    <div class="form-row">
+                        <!-- Form Group (organization name)-->
+                        <div class="form-group col-md-6">
+                            {{form.category|as_crispy_field}}
+                        </div>
+                        <!-- Form Group (location)-->
+                        <div class="form-group col-md-6">
+                            {{form.thumbnail|as_crispy_field}}
+                            {{form.published_at|as_crispy_field}}
+                        </div>
+                    </div>            
+                    {% if user.is_superuser %}      
+                        <!-- Form Row-->
+                        <div class="form-row">                                                    
+                            <!-- Form Group (phone number)-->
+                            <div class="form-group col-md-6">
+                                {{ form.author|as_crispy_field }}
+                            </div>
+                            <!-- Form Group (birthday)-->
+                            <div class="form-group col-md-6">
+                                {{ form.status|as_crispy_field }}
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    <!-- Save changes button-->
+                    <button class="btn btn-primary" type="submit">ارسال</button>
+                    {% if object %}
+                        <a target="_blank" href="{% url 'blog:preview' object.pk %}" class="btn btn-secondary">پیش نمایش</a>
+                    {% endif %}
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock  %}

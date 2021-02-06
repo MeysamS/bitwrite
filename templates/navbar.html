@@ -1,0 +1,41 @@
+{% load static %}
+<nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-white" id="sidenavAccordion">
+    <!-- Navbar Brand-->
+    <!-- * * Tip * * You can use text or an image for your navbar brand.-->
+    <!-- * * * * * * When using an image, we recommend the SVG format.-->
+    <!-- * * * * * * Dimensions: Maximum height: 32px, maximum width: 240px-->
+    <a class=" invoice" href="{% url 'blog:index' %}"><img style="width:2.8rem" src="{% static 'bw/assets/img/logo-bf.jpg' %}" /></a>
+       <!-- Navbar Search Input-->
+    <!-- * * Note: * * Visible only on and above the md breakpoint-->
+    <form class="form-inline ml-auto d-none d-md-block mr-3 w-50">
+        <div class="input-group input-group-joined input-group-solid">
+            <input class="form-control mr-sm-2" type="search" placeholder="در بین نویسندگان و مقالات و دسته بندی ها جستجو کنید..." aria-label="Search" />
+            <div class="input-group-prepend">
+                <div class="input-group-text"><i data-feather="search"></i></div>
+            </div>
+        </div>
+    </form>
+        <!-- Navbar Items-->
+    <ul class="navbar-nav align-items-center mx-auto">
+     
+        <!-- Messages Dropdown-->
+        {% comment %} {% include 'message-down.html' %} {% endcomment %}
+
+        <!-- Navbar User Dropdown-->
+        {% if user.is_authenticated %}{% include 'user-down.html' %}{% endif %}
+        
+        <!-- Sidenav Toggle Button-->
+        {% if not user.is_authenticated %}
+            <li class="ml-1"><a href="{% url 'account:login' %}" class="btn btn-sm btn-light">ورود</a></li>
+            <li class="mr-1"><a href="{% url 'account:login' %}" class="btn btn-sm btn-light">ثبت نام</a></li> 
+        {% endif %}
+       
+    {% comment %} {% if user.is_authenticated %}
+        <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle">
+            <i data-feather="menu"></i>
+        </button>
+    {% endif %}  {% endcomment %}
+    </ul>
+ 
+
+</nav>

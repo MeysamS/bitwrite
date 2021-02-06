@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa-IR" style="transform: none">
+  {% load static %}
+  {% load base_tags %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock title %}</title>
+
+  </head>
+
+
+  <body class="rtl page-template sticky_menu_enabled">
+    {% include 'navbar.html' with categories=categories %}
+    <div id="page" class="hfeed site">
+      <div class="site_main_container">
+
+        <section class="site_content">
+          <div class="container">
+          <div class="row">
+            <main class="main_content col-md-12">
+              {% block content %} {% endblock content %}
+            </main>
+          </div>            
+          </div>
+        </section>
+      </div>
+
+       {% include 'sidebar.html' %}
+    </div>
+
+
+
+  </body>
+</html>

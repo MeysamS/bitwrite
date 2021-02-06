@@ -1,0 +1,134 @@
+{% load base_tags %}
+
+
+ <div class="sticky_header">
+    <div class="top_menu_wrapper">
+      <div class="container">
+        <div class="mobile_menu_button">
+          <span class="mobile_menu_text">فهرست</span>
+          <div class="writing_mobile_icon">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+        <!-- end mobile_menu_button -->
+        <div class="top_header_items_holder mobile_menu_opened">
+          <div class="main_menu pull-left">
+            <div class="main_nav">
+              <ul class="nav navbar-nav">     
+               <li>
+                  <a 
+                    class="dropdown-toggle mobile_menu_parent" 
+                    href="{% url 'blog:index' %}"><i class="fa fa-home fa-2x"></i>                    
+                    </a>           
+                </li>  
+                <li>
+                    <a id="user_info_icon"
+                      class="dropdown-toggle mobile_menu_parent" 
+                      ><i class="fa fa-user fa-2x"></i>                  
+                    </a>           
+                  </li>      
+                {% category_navbar %}
+              </ul>
+            </div>
+          </div>
+          <div class="header_icons pull-right text_right">
+            <!-- start header social icons -->
+            <div class="social_icons_list header_social_icons pull-left">
+              <a
+                rel="nofollow noreferrer"
+                target="_blank"
+                href="#"
+                title="Facebook"
+                class="social_icon social_facebook social_icon_facebook"
+                ><i class="fa fa-facebook"></i></a
+              ><a
+                rel="nofollow noreferrer"
+                target="_blank"
+                href="#"
+                title="Twitter"
+                class="social_icon social_twitter social_icon_twitter"
+                ><i class="fa fa-twitter"></i></a
+              ><a
+                rel="nofollow noreferrer"
+                target="_blank"
+                href="#"
+                title="Google Plus"
+                class="social_icon social_google-plus social_icon_google-plus"
+                ><i class="fa fa-google-plus"></i></a
+              ><a
+                rel="nofollow noreferrer"
+                target="_blank"
+                href="#"
+                title="Behance"
+                class="social_icon social_behance social_icon_behance"
+                ><i class="fa fa-behance"></i></a
+              ><a
+                rel="nofollow noreferrer"
+                target="_blank"
+                href="#"
+                title="Dribbble"
+                class="social_icon social_dribbble social_icon_dribbble"
+                ><i class="fa fa-dribbble"></i></a
+              ><a
+                rel="nofollow noreferrer"
+                target="_blank"
+                href="#"
+                title="Instagram"
+                class="social_icon social_instagram social_icon_instagram"
+                ><i class="fa fa-instagram"></i></a
+              ><a
+                rel="nofollow noreferrer"
+                target="_blank"
+                href="#"
+                title="RSS"
+                class="social_icon social_rss social_icon_rss"
+                ><i class="fa fa-rss"></i
+              ></a>
+            </div>
+            <!-- end header social icons -->
+            <div class="header_info_wrapper" style="display: none">
+              <a
+                id="user_info_icon"
+                class="user_info_avatar user_info_button user_info_avatar_icon skin_color_hover"
+                href="#"
+              >
+                <i class="fa fa-align-center"></i>
+              </a>
+            </div>
+            <!-- start search box -->
+            <div class="header_search pull-right">
+              <form
+                class="search clearfix animated searchHelperFade"
+                method="get"
+                id="searchform"
+                action="http://demo.themeportal.ir/writing/"
+              >
+                <input
+                  class="col-md-12 search_text"
+                  id="appendedInputButton"
+                  placeholder="برای جستجو کلید اینتر را بزنید"
+                  type="text"
+                  name="s"
+                />
+                <input type="hidden" name="post_type" value="post" />
+                <i class="fa fa-search"
+                  ><input
+                    type="submit"
+                    class="search_submit"
+                    id="searchsubmit"
+                    value=""
+                /></i>
+              </form>
+            </div>
+            <!-- end search box -->
+          </div>
+        </div>
+        <!-- end .top_header_items_holder -->
+      </div>
+      <!-- end container -->
+    </div>
+  </div>
+
+
+
+  

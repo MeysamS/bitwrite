@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="row">
+    <div class="alert alert-primary alert-icon mb-0 mx-auto text-right" role="alert">
+        <div class="alert-icon-aside"><i class="fa fa-alert-triangle"></i></div>
+        <div class="alert-icon-content">
+            <form method="post">{% csrf_token %}
+                <h5 class="alert-heading">هشدار حذف مقاله</h5>
+                    آیا از حذف مقاله <b class="badge badge-marketing badge-primary-soft badge-pill text-primary">{{object}}</b> مربوطه به کاربر <b class="badge badge-marketing badge-primary-soft">{{object.author.get_full_name}}</b> مطمعن هستید ؟
+                        <hr/>
+
+                <button class="btn btn-danger" value="Confirm" type="submit">بله ، حذف شود</button>
+            </form>
+        </div>
+    </div>
+
+
+           
+          
+
+
+{% endblock  %}

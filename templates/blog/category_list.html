@@ -1,0 +1,23 @@
+{% extends 'blog/list.html' %}
+
+{% block header_list %}
+ {% comment %} <div class="d-flex align-items-center justify-content-between">
+    <h6 class="mb-0">پست های مرتبط با <div class="badge badge-primary-soft badge-pill badge-marketing badge-md text-primary">{{category.title}}</div></h6>
+  </div> {% endcomment %}
+  <h4 class="mb-4 text-right">
+                                <div class="icon-stack bg-primary text-white mr-2"><i data-feather="list"></i></div>
+    پست های مرتبط با <div class="badge badge-primary-soft badge-pill badge-marketing badge-md text-primary">{{category.title}}</div>
+                            </h4>
+  <hr class="mb-4" />
+{% endblock %}
+
+
+
+{% block previous_page_url %}
+    {% url 'blog:category' category.slug page_obj.previous_page_number %}
+{% endblock %}"
+{% block next_page_url %}
+    {% url 'blog:category' category.slug page_obj.next_page_number %}
+{% endblock  %}"
+
+

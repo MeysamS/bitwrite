@@ -1,0 +1,177 @@
+#layoutSidenav_nav {
+  font-family: 'Vazir';
+}
+
+.card-body a{
+  text-decoration: none;
+}
+
+.post-preview-meta-details a{
+  color: #69707a;
+}
+
+
+.post-preview h5.card-title {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+.post-preview .post-preview-meta {
+  display: flex;
+  align-items: center;
+  margin-right: 0.5rem;
+}
+.post-preview-meta-details  {
+  margin-right: 0.5rem;
+}
+.post-preview .post-preview-meta .post-preview-meta-img {
+  height: 2.25rem;
+  width: 2.25rem;
+  border-radius: 100%;
+  margin-right: 0.5rem;
+  flex-shrink: 0;
+}
+.post-preview .post-preview-meta .post-preview-meta-details .post-preview-meta-details-name {
+  font-size: 0.9rem;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+.post-preview .post-preview-meta .post-preview-meta-details .post-preview-meta-details-date {
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.post-preview-featured .post-preview-featured-img {
+  height: 12rem;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.post-preview-featured h5.card-title {
+  font-size: 1.75rem;
+}
+.post-preview-featured p.card-text {
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+@media (min-width: 992px) {
+  .post-preview-featured .post-preview-featured-img {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.post-archive-tag {
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-bottom: 1px solid #e0e5ec;
+  margin-bottom: 3rem;
+  padding-bottom: 0.5rem;
+}
+
+.post-archive-item {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.post-archive-meta {
+  display: flex;
+  align-items: center;
+  margin-right: 0.5rem;
+}
+.post-archive-meta .post-archive-meta-img {
+  height: 2.25rem;
+  width: 2.25rem;
+  border-radius: 100%;
+  margin-right: 0.5rem;
+  flex-shrink: 0;
+}
+.post-archive-meta .post-archive-meta-details .post-archive-meta-details-name {
+  font-size: 0.9rem;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+.post-archive-meta .post-archive-meta-details .post-archive-meta-details-date {
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.single-post .single-post-meta {
+  display: flex;
+  align-items: center;
+  margin-right: 0.5rem;
+}
+.single-post .single-post-meta .single-post-meta-img {
+  height: 6.25rem;
+  width: 6.25rem;
+  border-radius: 100%;
+  margin-right: 0.5rem;
+  flex-shrink: 0;
+}
+.single-post .single-post-meta .single-post-meta-details .single-post-meta-details-name {
+  font-size: 0.9rem;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+.single-post .single-post-meta .single-post-meta-details .single-post-meta-details-date {
+  font-size: 0.75rem;
+  line-height: 1;
+}
+.single-post .single-post-meta-links {
+  font-size: 1.25rem;
+}
+.single-post .single-post-meta-links a {
+  color: #c5ccd6;
+  margin-left: 0.5rem;
+}
+.single-post .single-post-meta-links a:hover {
+  color: #69707a;
+}
+.single-post .single-post-text {
+  font-size: 1.1rem;
+}
+.single-post .single-post-text p {
+  margin-bottom: 1.5rem;
+}
+.single-post .single-post-text h2,
+.single-post .single-post-text h3,
+.single-post .single-post-text h4,
+.single-post .single-post-text h5,
+.single-post .single-post-text h6 {
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.card-team {
+  overflow: visible;
+  margin-top: 3rem;
+}
+.card-team .card-body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 1.5rem;
+  text-align: center;
+}
+.card-team .card-body .card-team-img {
+  height: 10rem;
+  width: 10rem;
+  border-radius: 100%;
+  margin-top: -4.5rem;
+  box-shadow: 0 0.125rem 0.25rem 0 rgba(33, 40, 50, 0.2);
+}
+.card-team .card-body .card-team-name {
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+.card-team .card-body .card-team-position {
+  font-style: italic;
+  color: #a7aeb8;
+  font-size: 0.8rem;
+}
+
+
+
+
+

@@ -1,0 +1,30 @@
+  <div class="blog_post_meta clearfix">
+            
+              {% if article.category.count > 0 %}
+                <span class="blog_meta_item blog_meta_category">
+                  {% for cat in article.category.active %}
+                    <a href="{% url 'blog:category' cat.slug %}" rel="category">#{{cat.title }}</a>
+                  {% endfor %}              
+                </span>
+              {% endif %}
+
+              <span class="blog_meta_item blog_meta_date">
+                <span class="screen-reader-text"></span>
+                <time class="entry-date published updated">{{article.jpublished_at}}</time>
+              </span>
+              <span class="blog_meta_item blog_meta_comments">
+                <a href="http://demo.themeportal.ir/writing/?p=74#comments">8 دیدگاه</a></span>
+                <span class="blog_meta_item blog_meta_author"><span class="author vcard">
+                <a class="meta_author_avatar_url" href="http://demo.themeportal.ir/writing/?author=1">
+                  <img
+                    alt=""
+                    src="http://0.gravatar.com/avatar/c9051b523b1c4abf5934535e56339b0c?s=25&amp;d=mm&amp;r=g"
+                    />
+                </a>
+                <a
+                    class="url fn n"
+                    href="{% url 'blog:author' article.author %}"
+                    >{{article.author.get_full_name}}
+                </a>
+                  </span></span>
+          </div>

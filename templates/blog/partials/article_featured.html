@@ -1,0 +1,59 @@
+<div class="d-flex align-items-center justify-content-between">
+  <h6 class="mb-0">مقاله منتخب سایت</h6>
+  <div>
+    <a class="text-arrow-icon small" href="#!"
+      >سایر موارد<svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="feather feather-arrow-left"
+      >
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+        <polyline points="12 5 19 12 12 19"></polyline></svg
+    ></a>
+  </div>
+</div>
+<hr class="mb-4" />
+<div class="card mb-4">
+  <div class="card-body p-0">
+    <div class="row no-gutters">
+      <div class="{% if object.thumbnail %} col-lg-6 {% else %}col-lg-12{% endif %}  p-5 text-right">
+        {% include 'blog/meta-tags.html' with article=object %}
+        <a class="text-dark text-right" href="{% url 'blog:detail' object.slug %}">
+            <h1 class="mt-2">{{object.title}}</h1>
+        </a>
+            {% autoescape off %}
+                {{ object.description|truncatewords:20 }}
+            {% endautoescape %}  
+          <div class="post-preview post-preview-featured">
+          <div class="post-preview-meta">
+              <img class="post-preview-meta-img" src="static/bw/assets/img/illustrations/profiles/profile-1.png">
+              <div class="post-preview-meta-details">
+                  <div class="post-preview-meta-details-name"><a href="/author/admin">میثم سلیمانی</a></div>
+                  <div class="post-preview-meta-details-date">15 بهمن 1399 , ساعت 15:3</div>
+              </div>
+                <div class="post-preview-meta-details" style="margin-right:auto;padding:8px">
+                  <div class="post-preview-meta-details-name">
+                  <a href=""><li class="fa fa-heart fa-1x"></li></a> 
+                  <a href=""><li class="fa fa-bookmark fa-1x"></li></a> </div>                        
+              </div>
+          </div>
+        </div>
+      </div>
+      {% if object.thumbnail %}
+          <div
+            class="col-lg-6 align-self-stretch bg-img-cover d-none d-lg-flex"
+            style="
+              background-image: url('{{object.thumbnail.url}}');">
+          </div>
+      {% endif %}
+    
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+{% extends 'blog/list.html' %}
+{% load static %}
+{% block header %}
+<div class="d-flex single-post  align-items-center text-right mb-5" style="font-family:NotoNaskhB">
+    <div class="single-post-meta mr-4"><img class="single-post-meta-img" src="/static/bw/assets/img/illustrations/profiles/profile-1.png"></div>
+    <div class="ml-3 mr-4">
+        <h2 class="mb-0">{{author.get_full_name}}</h2>
+        <p class="lead mb-0">برنامه نویس full stack</p>
+        <a class="btn btn-primary btn-sm" href="https://www.chartjs.org/docs/latest/" target="_blank">
+        <i class="mr-1" data-feather="plus"></i>
+        دنبال کردن
+        </a>
+    </div>
+</div>
+{% endblock header %}
+
+{% block header_list %}
+  <div class="d-flex align-items-center justify-content-between">
+    <h6 class="mb-0">مقالات مرتبط با این نویسنده</h6>
+    <div>
+    </div>
+</div>
+<hr class="mb-4" />
+{% endblock %}
+
+{% block previous_page_url %}
+    {% url 'blog:author' author.username page_obj.previous_page_number %}
+{% endblock %}"
+{% block next_page_url %}
+    {% url 'blog:author' author.username page_obj.next_page_number %}
+{% endblock  %}"
+
+

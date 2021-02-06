@@ -1,0 +1,19 @@
+{% load static %}
+<style>
+    .img-account-profile {
+    height: 5rem;
+}
+</style>
+{% if user.is_authenticated %}
+      <div class="sidenav-menu-heading">
+        <div class="">                                    
+            <div class="card-body text-center">
+                <!-- Profile picture image-->
+                <img class="img-account-profile rounded-circle mb-2" src="{% static 'bw/assets/img/illustrations/profiles/profile-1.png' %} " alt="">
+                <!-- Profile picture help block-->
+                <div class="large mb-4">{{user.get_full_name}}</div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+  
