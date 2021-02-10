@@ -20,10 +20,27 @@
               </div>
           </div>
 
-          <h2 style="font-family:NotoNaskhB">{{article.title}}</h2>
+          <h2 style="font-family:NotoNaskhB">{{article.title}} {% if article.is_special %}<span class="ml-2  badge badge-danger">ویژه</span>{% endif %}</h2>
           {% if article.thumbnail %}<img class="img-fluid mt-3 mb-2" src="{{article.thumbnail.url}}">{% endif %} 
           <div class="single-post-text my-5" style="font-family:NotoNaskhB">
-              {{article.description|safe}}
+            {% if object.is_special %}
+                {% if user.is_authenticated and user.is_special_user or user == object.author or user.is_superuser %}
+                    {{article.description|safe}}     
+                {% else %}
+                    {{article.description|safe|truncatewords:70}}  
+                    <div class="alert alert-secondary alert-icon" role="alert">                
+                        <div class="alert-icon-aside">
+                            <i data-feather="feather"></i>
+                        </div>
+                        <div class="alert-icon-content">
+                            <h6 class="alert-heading">این مقاله ویژه می باشد</h6>
+                            جهت مشاهده کامل این مقاله لطفا <a href=#!> اشتراک ویژه</a> تهیه نمائید
+                        </div>
+                    </div>
+                {% endif %}
+            {% else %}
+                {{article.description|safe}}     
+            {% endif %}
               {% include 'blog/meta-tags.html' with article=article %}
               <hr class="my-5">
               <div class="text-center"><a class="btn btn-transparent-dark" href="{% url 'blog:index' %}">برگشت به لیست مقالات</a></div>

@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 LOGIN_REDIRECT_URL = 'blog:index'
-LOGIN_URL = 'account:login'
+LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL = 'blog:index'
 # Application definition
 

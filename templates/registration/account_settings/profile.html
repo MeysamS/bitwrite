@@ -1,0 +1,69 @@
+{% extends 'registration/account_settings/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block page_header %}پروفایل کاربر{% endblock  %}
+{% block page_content %}
+
+
+    <div class="col-xl-4">
+        <!-- Profile picture card-->
+        <div class="card">
+            <div class="card-header">عکس پروفایل</div>
+            <div class="card-body text-center">
+                <!-- Profile picture image-->
+                <img class="img-account-profile rounded-circle mb-2" src="assets/img/illustrations/profiles/profile-1.png" alt="">
+                <!-- Profile picture help block-->
+                <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                <!-- Profile picture upload button-->
+                <button class="btn btn-primary" type="button">Upload new image</button>
+            </div>
+        </div>
+    </div>
+ 
+    <div class="col-xl-8">
+        <!-- Account details card-->
+        <div class="card mb-4 text-right">
+            <div class="card-header">پروفایل کاربر</div>
+            <div class="card-body">
+                <form enctype="multipart/form-data" method="post">
+                        {% csrf_token%}
+                    <!-- Form Row-->
+                    <div class="form-row">
+                        <!-- Form Group (first name)-->
+                        <div class="form-group col-md-6">
+                            {{form.username|as_crispy_field}}
+                        </div>
+                        <!-- Form Group (last name)-->
+                        <div class="form-group col-md-6">
+                            {{form.email|as_crispy_field}}
+                        </div>
+                    </div>
+                    <!-- Form Row        -->
+                    <div class="form-row">
+                        <!-- Form Group (organization name)-->
+                        <div class="form-group col-md-6">
+                            {{form.first_name|as_crispy_field}}
+                        </div>
+                        <!-- Form Group (location)-->
+                        <div class="form-group col-md-6">
+                            {{form.last_name|as_crispy_field}}
+                        </div>
+                    </div>       
+                    <!-- Form Row        -->
+                    <div class="form-row">
+                        <!-- Form Group (organization name)-->
+                        <div class="form-group col-md-6">
+                            {{form.special_user|as_crispy_field}}
+                        </div>
+                        <!-- Form Group (location)-->
+                        <div class="form-group col-md-6">
+                            {{form.is_author|as_crispy_field}}
+                        </div>
+                    </div>       
+                    <!-- Save changes button-->
+                    <button class="btn btn-primary" type="submit">ویزایش اطلاعات</button>
+                </form>
+            </div>
+        </div>
+</div> 
+{% endblock  %}
