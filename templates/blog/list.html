@@ -10,15 +10,18 @@
           <div
             class="post-preview-featured-img"
             style="background-image: url('{{article.thumbnail.url}}')"
-          ></div>
+          > {% if article.is_special %}
+              <h1><span class="mr-4 mt-2 badge badge-danger">ویژه</span></h1>
+            {% endif %}
+</div>
           {% endif %}
         </div>
         <div class="{% if article.thumbnail %} col-lg-9 {% else %}col-lg-12{% endif %}">
           <div class="card-body">
             <div class="py-7">
-              <a href="{% url 'blog:detail' article.slug %}"
-                ><h4 class="card-title">{{article.title}}</h4></a
-              >
+              <a href="{% url 'blog:detail' article.slug %}">
+                <h4 class="card-title">{% if not article.thumbnail %}<span class="mr-2 mt-2 badge badge-danger">ویژه</span>{% endif %} {{article.title}}</h4>
+              </a>
               <div style="font-size: initial" class="card-text">
                 {% autoescape off %}
                     {{ article.description|truncatewords:20 }}

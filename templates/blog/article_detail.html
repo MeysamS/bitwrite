@@ -20,13 +20,14 @@
               </div>
           </div>
 
-          <h2 style="font-family:NotoNaskhB">{{article.title}}</h2>
+          <h2 style="font-family:NotoNaskhB">{{article.title}} {% if article.is_special %}<span class="ml-2  badge badge-danger">ویژه</span>{% endif %}</h2>
           {% if article.thumbnail %}<img class="img-fluid mt-3 mb-2" src="{{article.thumbnail.url}}">{% endif %} 
           <div class="single-post-text my-5" style="font-family:NotoNaskhB">
             {% if object.is_special %}
                 {% if user.is_authenticated and user.is_special_user or user == object.author or user.is_superuser %}
                     {{article.description|safe}}     
                 {% else %}
+                    {{article.description|safe|truncatewords:70}}  
                     <div class="alert alert-secondary alert-icon" role="alert">                
                         <div class="alert-icon-aside">
                             <i data-feather="feather"></i>

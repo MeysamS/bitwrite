@@ -1,11 +1,26 @@
-{% extends 'base.html' %}
+{% extends 'registration/account_settings/base.html' %}
 {% load crispy_forms_tags %}
 
-{% block title %}پروفایل کاربر{% endblock  %}
-{% block content %}
+{% block page_header %}پروفایل کاربر{% endblock  %}
+{% block page_content %}
 
-<div class="row">
-    <div class="col-xl-8 mx-auto">
+
+    <div class="col-xl-4">
+        <!-- Profile picture card-->
+        <div class="card">
+            <div class="card-header">عکس پروفایل</div>
+            <div class="card-body text-center">
+                <!-- Profile picture image-->
+                <img class="img-account-profile rounded-circle mb-2" src="assets/img/illustrations/profiles/profile-1.png" alt="">
+                <!-- Profile picture help block-->
+                <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                <!-- Profile picture upload button-->
+                <button class="btn btn-primary" type="button">Upload new image</button>
+            </div>
+        </div>
+    </div>
+ 
+    <div class="col-xl-8">
         <!-- Account details card-->
         <div class="card mb-4 text-right">
             <div class="card-header">پروفایل کاربر</div>
@@ -50,6 +65,5 @@
                 </form>
             </div>
         </div>
-    </div>
-</div>
+</div> 
 {% endblock  %}

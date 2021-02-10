@@ -10,7 +10,7 @@ class ProfileForm(forms.ModelForm):
         self.fields['username'].disabled = True
         if not user.is_superuser:
             self.fields['username'].help_text = None
-            self.fields['email'].disabled = True
+            # self.fields['email'].disabled = True
             self.fields['special_user'].disabled = True
             self.fields['is_author'].disabled = True
 

@@ -6,7 +6,7 @@
         "type": "python",
         "request": "launch",
         "stopOnEntry": false,
-        "pythonPath": "${workspaceRoot}/bitwrite_environment/Scripts/python.exe",
+        "python": "${workspaceRoot}/bitwrite_environment/Scripts/python.exe",
         "program": "${workspaceRoot}/manage.py",
           "args": [
               "runserver",
