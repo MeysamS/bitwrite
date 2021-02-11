@@ -26,7 +26,7 @@
         
         <!-- Sidenav Toggle Button-->
         {% if not user.is_authenticated %}
-            <li class="ml-1"><a href="{% url 'login' %}?login" class="btn btn-sm btn-light">ورود</a></li>
+            <li class="ml-1"><a href="{% url 'login' %}" class="btn btn-sm btn-light">ورود</a></li>
             <li class="mr-1"><a href="{% url 'login' %}?signup" class="btn btn-sm btn-light">ثبت نام</a></li>
         {% endif %}
        
