@@ -1,127 +1,693 @@
-{% extends 'base.html' %}
-
+{% extends 'registration/login_base.html' %}
+{% load static %}
 {% load widget_tweaks %}
+{% block custom_css %}
+    <link rel="stylesheet" href="{% static 'plugins/toastr/toastr.css' %}">
+    {% comment %} <style>
+        body {
+            font-family: 'Mukta', sans-serif;
+            height: 100vh;
+            min-height: 550px;
+            background-image: url(http://www.planwallpaper.com/static/images/Free-Wallpaper-Nature-Scenes.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow-y: hidden;
+        }
 
+        a {
+            text-decoration: none;
+            color: #444444;
+        }
+
+        .login-reg-panel {
+            position: relative;
+            top: 262px;
+            transform: translateY(-50%);
+            text-align: center;
+            width: 70%;
+            right: 0;
+            left: 0;
+            margin: auto;
+            height: 400px;
+        {#background-color: rgba(236, 48, 20, 0.9);#}{#  background: linear-gradient(135deg, orange 60%, cyan);#} background: linear-gradient(45deg, red, blue);
+
+        }
+
+        .white-panel {
+            background-color: rgba(255, 255, 255, 1);
+            height: 500px;
+            position: absolute;
+            top: -50px;
+            width: 50%;
+            right: calc(50% - 50px);
+            transition: .3s ease-in-out;
+            z-index: 0;
+            box-shadow: 0 0 15px 9px #00000096;
+        }
+
+        .login-reg-panel input[type="radio"] {
+            position: relative;
+            display: none;
+        }
+
+        .login-reg-panel {
+            color: #B8B8B8;
+        }
+
+        .login-reg-panel #label-login,
+        .login-reg-panel #label-register {
+            border: 1px solid #9E9E9E;
+            padding: 5px 5px;
+            width: 150px;
+            display: block;
+            text-align: center;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .login-info-box {
+            width: 30%;
+            padding: 0 50px;
+            top: 20%;
+            left: 0;
+            position: absolute;
+            text-align: left;
+        }
+
+        .register-info-box {
+            width: 30%;
+            padding: 0 50px;
+            top: 20%;
+            right: 0;
+            position: absolute;
+            text-align: left;
+
+        }
+
+        .right-log {
+            right: 50px !important;
+        }
+
+        .login-show,
+        .register-show {
+            z-index: 1;
+            display: none;
+            opacity: 0;
+            transition: 0.3s ease-in-out;
+            color: #242424;
+            text-align: left;
+            padding: 50px;
+        }
+
+        .show-log-panel {
+            display: block;
+            opacity: 0.9;
+        }
+
+        .login-show input[type="text"], .login-show input[type="password"] {
+            width: 100%;
+            display: block;
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #b5b5b5;
+            outline: none;
+        }
+
+        .login-show input[type="button"] {
+            max-width: 150px;
+            width: 100%;
+            background: #444444;
+            color: #f9f9f9;
+            border: none;
+            padding: 10px;
+            text-transform: uppercase;
+            border-radius: 2px;
+            float: right;
+            cursor: pointer;
+        }
+
+        .login-show a {
+            display: inline-block;
+            padding: 10px 0;
+        }
+
+        .register-show input[type="text"], .register-show input[type="password"] {
+            width: 100%;
+            display: block;
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #b5b5b5;
+            outline: none;
+        }
+
+        .register-show input[type="button"] {
+            max-width: 150px;
+            width: 100%;
+            background: #444444;
+            color: #f9f9f9;
+            border: none;
+            padding: 10px;
+            text-transform: uppercase;
+            border-radius: 2px;
+            float: right;
+            cursor: pointer;
+        }
+
+        .credit {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            color: #3B3B25;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            z-index: 99;
+        }
+
+        a {
+            text-decoration: none;
+            color: #2c7715;
+        }
+
+
+    </style>{% endcomment %}
+
+
+
+    <style>
+        .wrap {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .button {
+            min-width: 150px;
+            min-height: 10px;
+            font-family: 'NotoNaskhB';
+            font-size: 22px;
+            text-transform: uppercase;
+            letter-spacing: 1.3px;
+            font-weight: 700;
+            color: #313133;
+            background: #4FD1C5;
+            background: linear-gradient(90deg, rgba(129, 230, 217, 1) 0%, rgba(79, 209, 197, 1) 100%);
+            border: none;
+            border-radius: 1000px;
+            box-shadow: 4px 4px 8px rgba(79, 209, 197, .64);
+            transition: all 0.3s ease-in-out 0s;
+            cursor: pointer;
+            outline: none;
+            position: relative;
+            padding: 10px;
+        }
+
+        button::before {
+            content: '';
+            border-radius: 1000px;
+            min-width: calc(150px + 12px);
+            min-height: calc(40px + 12px);
+            border: 6px solid #00FFCB;
+            box-shadow: 0 0 10px rgba(0, 255, 203, .64);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: all .3s ease-in-out 0s;
+        }
+
+        .button:hover, .button:focus {
+            color: #313133;
+            transform: translateY(-6px);
+        }
+
+        button:hover::before, button:focus::before {
+            opacity: 1;
+        }
+
+        button::after {
+            content: '';
+            width: 30px;
+            height: 30px;
+            border-radius: 100%;
+            border: 6px solid #00FFCB;
+            position: absolute;
+            z-index: -1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: ring 1.5s infinite;
+        }
+
+        button:hover::after, button:focus::after {
+            animation: none;
+            display: none;
+        }
+
+        @keyframes ring {
+            0% {
+                width: 30px;
+                height: 30px;
+                opacity: 1;
+            }
+            100% {
+                width: 200px;
+                height: 200px;
+                opacity: 0;
+            }
+        }
+    </style>
+
+{% endblock %}
 {% block content %}
-    <div class="row justify-content-center text-right">
-    <div class="col-xl-5 col-lg-6 col-md-8 col-sm-11">
-        <!-- Social login form-->
-        <div class="card my-5">
-            <div class="card-body p-5 text-center">
-                <div class="h3 font-weight-light mb-3">ورود با سایر حساب ها</div>
-                <!-- Social login links-->
-                <a class="btn btn-icon btn-facebook mx-1" href="#!"><svg class="svg-inline--fa fa-facebook-f fa-w-10 fa-fw fa-sm" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook-f" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path></svg><!-- <i class="fab fa-facebook-f fa-fw fa-sm"></i> Font Awesome fontawesome.com --></a>
-                <a class="btn btn-icon btn-github mx-1" href="#!"><svg class="svg-inline--fa fa-github fa-w-16 fa-fw fa-sm" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" data-fa-i2svg=""><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg><!-- <i class="fab fa-github fa-fw fa-sm"></i> Font Awesome fontawesome.com --></a>
-                <a class="btn btn-icon btn-google mx-1" href="#!"><svg class="svg-inline--fa fa-google fa-w-16 fa-fw fa-sm" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512" data-fa-i2svg=""><path fill="currentColor" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path></svg><!-- <i class="fab fa-google fa-fw fa-sm"></i> Font Awesome fontawesome.com --></a>
-                <a class="btn btn-icon btn-twitter mx-1" href="#!"><svg class="svg-inline--fa fa-twitter fa-w-16 fa-fw fa-sm" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg><!-- <i class="fab fa-twitter fa-fw fa-sm"></i> Font Awesome fontawesome.com --></a>
-            </div>
-            <hr class="my-0">
-            {% if form.non_field_errors %}
-                <hr/>
-                <div class="errors" >
-                <h4 style="color:sienna"> لطفا به خطاهای زیر توجه فرمائید</h4>
-                    {% for error in form.non_field_errors %}
-                        <p style="color:red;text-align: justify;" >{{error}}</p>
-                    {% endfor %}
-                </div>
-            {% endif %}
-            
-            <div class="card-body p-5">
-                <!-- Login form-->
-                <form method="post" action="{% url 'login' %}"> {% csrf_token %}
-                    <!-- Form Group (email address)-->
-                    <div class="form-group {% if form.username.errors %}is-invalid{% endif %}"> 
-                        <label class="text-gray-600 small" for="username">نام کاربری</label>
-                            {% if form.username.errors %}
-                                {% for error in form.username.errors %}
-                                    <p style="color:#a94442;text-align: justify;" >{{error}}</p>
-                                {% endfor %}
-                            {% endif %}
-                        <input type="text" name="username" class="form-control form-control-solid" id="id_username">
-                        <div id="validationServer03Feedback" class="invalid-feedback">
-                            Please provide a valid city.
+
+    {#    <div class="row justify-content-center text-right">#}
+    {#        <div class="col-xl-5 col-lg-6 col-md-8 col-sm-11">#}
+    {#            <!-- Social login form-->#}
+    {#            <div class="card my-5">#}
+    {#                <div class="card-body p-3 text-center">#}
+    {#                    <div class="h5 font-weight-light mb-1">ورود به بیت رایت</div>#}
+    {#                </div>#}
+    {#                <hr class="my-0">#}
+    {##}
+    {#                <div class="card-body p-5">#}
+    {#                    <!-- Login form-->#}
+    {#                    <form method="post" action="{% url 'login' %}">#}
+    {#                        {% csrf_token %}#}
+    {#                        <div class="formsix-pos">#}
+    {#                            {% if form.username.errors %}#}
+    {#                                {% for error in form.username.errors %}#}
+    {#                                    <p style="color:#a94442;text-align: justify;">{{ error }}</p>#}
+    {#                                {% endfor %}#}
+    {#                            {% endif %}#}
+    {#                            <div class="form-group {% if form.username.errors %}has-error{% endif %}">#}
+    {#                                <input type="text" placeholder="نام کاربری" name="username" class="form-control"#}
+    {#                                       id="id_username">#}
+    {#                            </div>#}
+    {#                        </div>#}
+    {#                        <div class="formsix-e">#}
+    {#                            {% if form.password.errors %}#}
+    {#                                {% for error in form.password.errors %}#}
+    {#                                    <p style="color:#a94442;text-align: justify;">{{ error }}</p>#}
+    {#                                {% endfor %}#}
+    {#                            {% endif %}#}
+    {#                            <div class="form-group {% if form.password.errors %}has-error{% endif %}">#}
+    {#                                <input type="password" placeholder="رمز عبور" name="password" class="form-control"#}
+    {#                                       id="id_password"/>#}
+    {#                            </div>#}
+    {#                        </div>#}
+    {#                        <div class="fromsix-pos">#}
+    {#                            <div class="row align-items-center">#}
+    {##}
+    {#                                <div class="col-md-4">#}
+    {#                                    <button type="submit" class="btn btn-success col-md-12">ورود</button>#}
+    {#                                </div>#}
+    {#                                <div class="col-md-8">#}
+    {#                                    <a class="btn btn-info col-md-12" href="#"><b>رمز عبور خود را فراموش کردم!</b></a>#}
+    {#                                </div>#}
+    {#                            </div>#}
+    {#                        </div>#}
+    {#                    </form>#}
+    {#                </div>#}
+    {#                <hr class="my-0">#}
+    {#                <div class="card-body px-5 py-4">#}
+    {#                    <div class="small text-center">#}
+    {#                        حساب کاربری ندارید؟#}
+    {#                        <a href="auth-register-social.html">ایجاد حساب کاربری</a>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
+    {% comment %}  <div class="login-reg-panel">
+        <div class="login-info-box">
+            <h2>Have an account?</h2>
+            <p>Lorem ipsum dolor sit amet</p>
+            <label id="label-register" for="log-reg-show">Login</label>
+            <input type="radio" name="active-log-panel" id="log-reg-show" checked="checked">
+        </div>
+
+        <div class="register-info-box">
+            <h2>Don't have an account?</h2>
+            <p>Lorem ipsum dolor sit amet</p>
+            <label id="label-login" for="log-login-show">Register</label>
+            <input type="radio" name="active-log-panel" id="log-login-show">
+        </div>
+
+        <div class="white-panel">
+            <div class="login-show">
+                <h2>LOGIN</h2>
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <div class="formsix-pos">
+                        {% if form.username.errors %}
+                            {% for error in form.username.errors %}
+                                <p style="color:#a94442;text-align: justify;">{{ error }}</p>
+                            {% endfor %}
+                        {% endif %}
+                        <div class="form-group {% if form.username.errors %}has-error{% endif %}">
+                            <input type="text" placeholder="نام کاربری" name="username" class="form-control"
+                                   id="id_username">
                         </div>
                     </div>
-                    <!-- Form Group (password)-->
-                    <div class="form-group {% if form.password.errors %}is-invalid{% endif %}">
-                        <label class="text-gray-600 small" for="password">رمز عبور</label>
-                        <input id="id_password" class="form-control form-control-solid" type="password" placeholder="" aria-label="Password" aria-describedby="passwordExample">
-                    </div>
-                    <!-- Form Group (forgot password link)-->
-                    <div class="form-group"><a class="small" href="auth-password-social.html">رمز عبور را فراموش کردم</a></div>
-                    <!-- Form Group (login box)-->
-                    <div class="form-group d-flex align-items-center justify-content-between mb-0">
-                        <div class="custom-control custom-control-solid custom-checkbox">
-                            <input class="custom-control-input small" id="customCheck1" type="checkbox">
-                            <label class="custom-control-label" for="customCheck1">مرا به خاطر بسپار</label>
+                    <div class="formsix-e">
+                        {% if form.password.errors %}
+                            {% for error in form.password.errors %}
+                                <p style="color:#a94442;text-align: justify;">{{ error }}</p>
+                            {% endfor %}
+                        {% endif %}
+                        <div class="form-group {% if form.password.errors %}has-error{% endif %}">
+                            <input type="password" placeholder="رمز عبور" name="password" class="form-control"
+                                   id="id_password"/>
                         </div>
-                        <button class="btn btn-primary" type="submit" >Login</button>
+                    </div>
+                    <div class="fromsix-pos">
+                        <div class="row align-items-center">
+
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-success col-md-12">ورود</button>
+                            </div>
+                            <div class="col-md-8">
+                                <a class="btn btn-info col-md-12" href="#"><b>رمز عبور خود را فراموش کردم!</b></a>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
-            <hr class="my-0">
-            <div class="card-body px-5 py-4">
-                <div class="small text-center">
-                    حساب کاربری ندارید؟
-                    <a href="auth-register-social.html">ایجاد حساب کاربری</a>
-                </div>
+            <div class="register-show">
+                <h2>REGISTER</h2>
+                <input type="text" placeholder="Email">
+                <input type="password" placeholder="Password">
+                <input type="password" placeholder="Confirm Password">
+                <input type="button" value="Register">
             </div>
         </div>
+    </div>{% endcomment %}
+    <div class="container" style="direction: rtl">
+        <section id="formHolder">
+
+            <div class="row">
+
+                <!-- Brand Box -->
+                <div class="col-sm-6 brand">
+                    <div class="heading">
+                        {#                        <h2>Marina</h2>#}
+                        <div class="form-group">
+                            <img width="50%" src="{% static 'bw/assets/img/logo_original.png' %}" alt="">
+                        </div>
+
+                        <p style="font-family: NotoNaskh">بیت رایت - فراتر از رایت</p>
+                    </div>
+
+                    <div class="success-msg">
+                        <p>با سپاس! حال شما یک بیت رایتی هستید!</p>
+                        <a href="/" class="profile">مای بیت رایت</a>
+                    </div>
+                </div>
+
+                <!-- Form Box -->
+                <div class="col-sm-6 form">
+
+                    <!-- Login Form -->
+                    <div class="login form-peice {% if 'signup' in request.GET %} switched{% endif %}">
+                        <form class="login-form" action="{% url 'login' %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="username">نام کاربری</label>
+                                <input autocomplete="off" type="username" name="username" id="username" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">رمزعبور</label>
+                                <input autocomplete="off" type="password" name="password" id="password" required>
+                            </div>
+
+                            <div class="CTA">
+                                <div class="wrap">
+                                    <button class="button">ورود</button>
+                                </div>
+
+                                {#                                <input type="submit" value="ورود">#}
+                                <div style="margin-top: 120px">
+                                    <a href="#" class="switch">می خواهم بیت رایتی شوم!</a>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div><!-- End Login Form -->
+
+
+                    <!-- Signup Form -->
+                    <div class="signup form-peice {% if 'login' in request.GET %} switched{% endif %}">
+                        <form class="signup-form" action="#" method="post">
+
+                            <div class="form-group">
+                                <label for="name">نام نام خانوادگی</label>
+                                <input type="text" name="username" id="name" class="name">
+                                <span class="error"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">آدرس الکترونیکی</label>
+                                <input type="email" name="emailAdress" id="email" class="email">
+                                <span class="error"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">شماره تماس - <small>اختیاری</small></label>
+                                <input type="text" name="phone" id="phone">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">رمز عبور</label>
+                                <input type="password" name="password" id="password" class="pass">
+                                <span class="error"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="passwordCon">صحت رمز عبور</label>
+                                <input type="password" name="passwordCon" id="passwordCon" class="passConfirm">
+                                <span class="error"></span>
+                            </div>
+
+                            <div class="CTA">
+                                <input type="submit" value="ثبت نام" id="submit">
+                                <a href="#" class="switch">من بیت رایتی هستم!</a>
+                            </div>
+                        </form>
+                    </div><!-- End Signup Form -->
+                </div>
+            </div>
+
+        </section>
+        <footer>
+        </footer>
+
     </div>
-</div>
-   
+
 {% endblock content %}
 
+{% block custom_js %}
+    <script src="{% static 'plugins/toastr/toastr.min.js' %}"></script>
+ {% comment %}   <script>
+        $(document).ready(function () {
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            {% if form.username.errors %}
+                {% for error in form.password.errors %}
+                    alert({{ error }})
+                    toastr.info('{{ error }}!');
+                {% endfor %}
+            {% endif %}
+
+        });
+    </script>
+    <script>
+
+        $(document).ready(function () {
+            $('.login-info-box').fadeOut();
+            $('.login-show').addClass('show-log-panel');
+        });
 
 
- {% comment %} <div class="row">
-            <div class="col-md-8 col-md-offset-2 mx-auto text-right">
-                <!-- login_wrapper -->
-                <div class="login_wrapper">                  
-                    <h2>ورود به حساب کاربری</h2>
-                    {% if form.non_field_errors %}
-                        <hr/>
-                        <div class="errors" >
-                        <h4 style="color:sienna"> لطفا به خطاهای زیر توجه فرمائید</h4>
-                            {% for error in form.non_field_errors %}
-                                <p style="color:red;text-align: justify;" >{{error}}</p>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                    
-                    <form method="post" action="{% url 'login' %}">
-                        {% csrf_token %}
-                        <div class="formsix-pos">
-                            {% if form.username.errors %}
-                                {% for error in form.username.errors %}
-                                    <p style="color:#a94442;text-align: justify;" >{{error}}</p>
-                                {% endfor %}
-                            {% endif %}
-                            <div class="form-group {% if form.username.errors %}has-error{% endif %}"> 
-                                <input type="text" placeholder="نام کاربری" name="username" class="form-control" id="id_username">
-                            </div>
-                        </div>
-                        <div class="formsix-e">
-                            {% if form.password.errors %}
-                                {% for error in form.password.errors %}
-                                    <p style="color:#a94442;text-align: justify;" >{{error}}</p>
-                                {% endfor %}
-                            {% endif %}
-                            <div class="form-group {% if form.password.errors %}has-error{% endif %}"> 
-                                <input type="password" placeholder="رمز عبور" name="password" class="form-control" id="id_password"/>
-                            </div>
-                        </div>
-                        <div class="login_remember_box"> <label class="control control--checkbox">مرا به خاطر بسپار <input type="checkbox"> <span class="control__indicator"></span> </label> <a href="#" class="forget_password"> رمز عبور را فراموش کردم </a> </div>
-                        <div class="login_btn_wrapper"> <button type="submit" class="btn btn-primary login_btn"> ورود </button> </div>
-                    </form>
-                    <div class="login_message">
-                        <p>حساب کاربری ندارید؟  <a href="#"> ایجاد </a> </p>
-                    </div>
+        $('.login-reg-panel input[type="radio"]').on('change', function () {
+            if ($('#log-login-show').is(':checked')) {
+                $('.register-info-box').fadeOut();
+                $('.login-info-box').fadeIn();
 
-                      <div class="row">
-                        <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6"> <a href="#" class="btn btn-primary facebook"> <span>ورود با حساب  facebook</span> <i data-feather="facebook"></i> </a> </div>
-                        <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6"> <a href="#" class="btn btn-danger google-plus"> ورود با حساب  google <i data-feather="google-plus"></i> </a> </div>
-                    </div>
-                </div> 
-            </div>
-        </div> {% endcomment %}
+                $('.white-panel').addClass('right-log');
+                $('.register-show').addClass('show-log-panel');
+                $('.login-show').removeClass('show-log-panel');
+
+            } else if ($('#log-reg-show').is(':checked')) {
+                $('.register-info-box').fadeIn();
+                $('.login-info-box').fadeOut();
+
+                $('.white-panel').removeClass('right-log');
+
+                $('.login-show').addClass('show-log-panel');
+                $('.register-show').removeClass('show-log-panel');
+            }
+        });
+
+
+    </script>
+{% endcomment %}
+
+
+    <script>
+        /*global $, document, window, setTimeout, navigator, console, location*/
+        $(document).ready(function () {
+
+            'use strict';
+
+            var usernameError = true,
+                emailError = true,
+                passwordError = true,
+                passConfirm = true;
+
+            // Detect browser for css purpose
+            if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+                $('.form form label').addClass('fontSwitch');
+            }
+
+            // Label effect
+            $('input').focus(function () {
+
+                $(this).siblings('label').addClass('active');
+            });
+
+            // Form validation
+            $('input').blur(function () {
+
+                // User Name
+                if ($(this).hasClass('name')) {
+                    if ($(this).val().length === 0) {
+                        $(this).siblings('span.error').text('Please type your full name').fadeIn().parent('.form-group').addClass('hasError');
+                        usernameError = true;
+                    } else if ($(this).val().length > 1 && $(this).val().length <= 6) {
+                        $(this).siblings('span.error').text('Please type at least 6 characters').fadeIn().parent('.form-group').addClass('hasError');
+                        usernameError = true;
+                    } else {
+                        $(this).siblings('.error').text('').fadeOut().parent('.form-group').removeClass('hasError');
+                        usernameError = false;
+                    }
+                }
+                // Email
+                if ($(this).hasClass('email')) {
+                    if ($(this).val().length == '') {
+                        $(this).siblings('span.error').text('Please type your email address').fadeIn().parent('.form-group').addClass('hasError');
+                        emailError = true;
+                    } else {
+                        $(this).siblings('.error').text('').fadeOut().parent('.form-group').removeClass('hasError');
+                        emailError = false;
+                    }
+                }
+
+                // PassWord
+                if ($(this).hasClass('pass')) {
+                    if ($(this).val().length < 8) {
+                        $(this).siblings('span.error').text('Please type at least 8 charcters').fadeIn().parent('.form-group').addClass('hasError');
+                        passwordError = true;
+                    } else {
+                        $(this).siblings('.error').text('').fadeOut().parent('.form-group').removeClass('hasError');
+                        passwordError = false;
+                    }
+                }
+
+                // PassWord confirmation
+                if ($('.pass').val() !== $('.passConfirm').val()) {
+                    $('.passConfirm').siblings('.error').text('Passwords don\'t match').fadeIn().parent('.form-group').addClass('hasError');
+                    passConfirm = false;
+                } else {
+                    $('.passConfirm').siblings('.error').text('').fadeOut().parent('.form-group').removeClass('hasError');
+                    passConfirm = false;
+                }
+
+                // label effect
+                if ($(this).val().length > 0) {
+                    $(this).siblings('label').addClass('active');
+                } else {
+                    $(this).siblings('label').removeClass('active');
+                }
+            });
+
+
+            // form switch
+            $('a.switch').click(function (e) {
+                $(this).toggleClass('active');
+                e.preventDefault();
+
+                if ($('a.switch').hasClass('active')) {
+                    $(this).parents('.form-peice').addClass('switched').siblings('.form-peice').removeClass('switched');
+                } else {
+                    $(this).parents('.form-peice').removeClass('switched').siblings('.form-peice').addClass('switched');
+                }
+            });
+
+
+            // Form submit
+            $('form.signup-form').submit(function (event) {
+                event.preventDefault();
+
+                if (usernameError == true || emailError == true || passwordError == true || passConfirm == true) {
+                    $('.name, .email, .pass, .passConfirm').blur();
+                } else {
+                    $('.signup, .login').addClass('switched');
+
+                    setTimeout(function () {
+                        $('.signup, .login').hide();
+                    }, 700);
+                    setTimeout(function () {
+                        $('.brand').addClass('active');
+                    }, 300);
+                    setTimeout(function () {
+                        $('.heading').addClass('active');
+                    }, 600);
+                    setTimeout(function () {
+                        $('.success-msg p').addClass('active');
+                    }, 900);
+                    setTimeout(function () {
+                        $('.success-msg a').addClass('active');
+                    }, 1050);
+                    setTimeout(function () {
+                        $('.form').hide();
+                    }, 700);
+                }
+            });
+
+            // Reload page
+            $('a.profile').on('click', function () {
+                location.reload(true);
+            });
+
+
+        });
+
+    </script>
+{% endblock %}

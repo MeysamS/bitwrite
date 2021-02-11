@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'apps.blog',
-    'apps.account',
+    'apps.blog.apps.BlogConfig',
+    'apps.account.apps.AccountConfig',
     'extensions',
 
      # Thord-Party apps
