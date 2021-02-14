@@ -250,30 +250,18 @@
                                 <span class="error"></span>
                             </div>
 
-                            {% comment %}           <div class="box">
-                                <input id="rememberChkBox" type="checkbox">
-                                <span class="check"></span>
-                                <label for="rememberChkBox">مرا به خاطر بسپار
-
+                            <div class="form-group">
+                                <label for="rememberChkBox" class="customcheck">مرا به خاطر بسپار
+                                    <input type="checkbox" id="rememberChkBox">
+                                    <span class="checkmark"></span>
                                 </label>
-
-                            </div>{% endcomment %}
-
-                            <label for="rememberChkBox" class="customcheck">مرا به خاطر بسپار
-                                <input type="checkbox" id="rememberChkBox">
-                                <span class="checkmark"></span>
-                            </label>
-                            {#                            <div class="round">#}
-                            {#                                <input type="checkbox" id="rememberChkBox"/>#}
-                            {#                                <label for="rememberChkBox">مرا به خاطر بسپار</label>#}
-                            {#                            </div>#}
-
+                            </div>
 
                             <div class="CTA">
                                 <div class="wrap">
                                     <button id="submitLogin" type="submit" class="button">ورود</button>
                                 </div>
-                                <div style="margin-top: 120px">
+                                <div style="margin-top: 97px">
                                     <a onclick="switchForm('reset',this)" href="#" class="switch pull-left">فراموشی رمز
                                         عبور</a>
                                     <a onclick="switchForm('signup',this)" href="#" class="switch pull-right">می خواهم
@@ -289,8 +277,8 @@
                         <form class="reset-form" action="{% url 'password_reset' %}" method="post">
                             {% csrf_token %}
                             <div class="form-group">
-                                <label for="username">آدرس ایمیل</label>
-                                <input autocomplete="off" type="email" name="email" id="email"
+                                <label for="email">آدرس ایمیل</label>
+                                <input autocomplete="off" type="email" name="email" id="email" class="email"
                                        value="{% if form.email.value %}{{ form.email.value }}{% endif %}"/>
                                 <span class="error"></span>
                             </div>
@@ -300,11 +288,11 @@
                                     <button type="submit" class="button">بازیابی رمز عبور</button>
                                 </div>
                                 <div style="margin-top: 195px">
+                                    <a onclick="switchForm('login',this)" href="#" class="switch pull-left">من بیت رایتی
+                                        هستم</a>
                                     <a onclick="switchForm('signup',this)" href="#" class="switch pull-right">می خواهم
                                         بیت
                                         رایتی شوم!</a>
-                                    <a onclick="switchForm('login',this)" href="#" class="switch pull-left">من بیت رایتی
-                                        هستم</a>
                                 </div>
                             </div>
                         </form>
@@ -315,14 +303,14 @@
                         <form class="signup-form" action="#" method="post">
 
                             <div class="form-group">
-                                <label for="email">آدرس الکترونیکی</label>
-                                <input type="email" name="emailAdress" id="email" class="email">
+                                <label for="emailAdress">آدرس الکترونیکی</label>
+                                <input type="email" name="emailAdress" id="emailAdress" class="email">
                                 <span class="error"></span>
                             </div>
 
                             <div class="form-group">
-                                <label for="password">رمز عبور</label>
-                                <input type="password" name="password" id="password" class="pass">
+                                <label for="pass">رمز عبور</label>
+                                <input type="password" name="pass" id="pass" class="pass">
                                 <span class="error"></span>
                             </div>
 
@@ -539,7 +527,7 @@
         fillByMemory()
         $('#submitLogin').on('click', function () {
 
-            if ($('#rememberChkBox').val()) {
+            if ($('#rememberChkBox').val() && $('#username').val() && $('#password').val()) {
                 rememberMe();
             }
         });
@@ -547,19 +535,36 @@
         function rememberMe() {
             $.cookie('id', $('#username').val());
             $.cookie('password', $('#password').val());
+            $.cookie('remBox', $('#rememberChkBox').val());
 
+        }
+
+        function deleteRememberMe() {
+            /*
+                delete cookie
+            */
+            $.removeCookie("id");
+            $.removeCookie("password");
+            $.removeCookie("remBox");
         }
 
         function fillByMemory() {
-            if (!!$.cookie('id'))
+            if (!!$.cookie('id')) {
                 $('#username').val($.cookie('id'));
-            $('#username').siblings('label').addClass('active')
+                $('#username').siblings('label').addClass('active')
+            }
 
 
-            if (!!$.cookie('password'))
+            if (!!$.cookie('password')) {
                 $('#password').val($.cookie('password'));
-            $('#password').siblings('label').addClass('active')
+                $('#password').siblings('label').addClass('active')
+            }
+
+
+            if (!!$.cookie('remBox'))
+                $('#rememberChkBox').attr('checked', $.cookie('remBox'));
 
         }
+
     </script>
 {% endblock %}
