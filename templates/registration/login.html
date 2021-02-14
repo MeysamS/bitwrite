@@ -97,7 +97,6 @@
             text-align: justify;
         }
     </style>
-
     <style>
         /* animate logo bit write */
 
@@ -112,13 +111,13 @@
             overflow: hidden;
             transform: translatey(0px);
             animation: float 3s ease-in-out infinite;
+        }
 
-        img {
+        .loader-logo img {
             width: 100%;
             height: auto;
         }
 
-        }
 
         @keyframes float {
             0% {
@@ -132,8 +131,79 @@
             }
         }
     </style>
+    <style>
+        /* The customcheck */
+        .customcheck {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 22px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Hide the browser's default checkbox */
+        .customcheck input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        /* Create a custom checkbox */
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 23px;
+            width: 23px;
+            background-color: #eee;
+            border-radius: 5px;
+        }
+
+        /* On mouse-over, add a grey background color */
+        .customcheck:hover input ~ .checkmark {
+            background-color: #ccc;
+        }
+
+        /* When the checkbox is checked, add a blue background */
+        .customcheck input:checked ~ .checkmark {
+            background-color: #02cfa6;
+            border-radius: 5px;
+        }
+
+        /* Create the checkmark/indicator (hidden when not checked) */
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        /* Show the checkmark when checked */
+        .customcheck input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        /* Style the checkmark/indicator */
+        .customcheck .checkmark:after {
+            left: 9px;
+            top: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
+    </style>
 {% endblock %}
 {% block content %}
+
 
     <div class="container" style="direction: rtl">
         <section id="formHolder">
@@ -145,7 +215,8 @@
                     <div class="heading">
                         <h3 class="loader-logo">BIT WRITE</h3>
                         <div class="loader">
-                            <img width="50%" class="loader-logo" src="{% static 'bw/assets/img/logo_original.png' %}" alt="">
+                            <img width="50%" class="loader-logo" src="{% static 'bw/assets/img/logo_original.png' %}"
+                                 alt="">
                         </div>
 
                         <p style="font-family: NotoNaskh">بیت رایت - فراتر از رایت</p>
@@ -179,38 +250,74 @@
                                 <span class="error"></span>
                             </div>
 
+                            {% comment %}           <div class="box">
+                                <input id="rememberChkBox" type="checkbox">
+                                <span class="check"></span>
+                                <label for="rememberChkBox">مرا به خاطر بسپار
+
+                                </label>
+
+                            </div>{% endcomment %}
+
+                            <label for="rememberChkBox" class="customcheck">مرا به خاطر بسپار
+                                <input type="checkbox" id="rememberChkBox">
+                                <span class="checkmark"></span>
+                            </label>
+                            {#                            <div class="round">#}
+                            {#                                <input type="checkbox" id="rememberChkBox"/>#}
+                            {#                                <label for="rememberChkBox">مرا به خاطر بسپار</label>#}
+                            {#                            </div>#}
+
+
                             <div class="CTA">
                                 <div class="wrap">
-                                    <button type="submit" class="button">ورود</button>
+                                    <button id="submitLogin" type="submit" class="button">ورود</button>
                                 </div>
                                 <div style="margin-top: 120px">
-                                    <a href="#" class="switch">می خواهم بیت رایتی شوم!</a>
-
+                                    <a onclick="switchForm('reset',this)" href="#" class="switch pull-left">فراموشی رمز
+                                        عبور</a>
+                                    <a onclick="switchForm('signup',this)" href="#" class="switch pull-right">می خواهم
+                                        بیت
+                                        رایتی شوم!</a>
                                 </div>
                             </div>
                         </form>
                     </div><!-- End Login Form -->
 
+                    <!-- Reset Password Form -->
+                    <div class="reset form-peice switched">
+                        <form class="reset-form" action="{% url 'password_reset' %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="username">آدرس ایمیل</label>
+                                <input autocomplete="off" type="email" name="email" id="email"
+                                       value="{% if form.email.value %}{{ form.email.value }}{% endif %}"/>
+                                <span class="error"></span>
+                            </div>
+
+                            <div class="CTA">
+                                <div class="wrap">
+                                    <button type="submit" class="button">بازیابی رمز عبور</button>
+                                </div>
+                                <div style="margin-top: 195px">
+                                    <a onclick="switchForm('signup',this)" href="#" class="switch pull-right">می خواهم
+                                        بیت
+                                        رایتی شوم!</a>
+                                    <a onclick="switchForm('login',this)" href="#" class="switch pull-left">من بیت رایتی
+                                        هستم</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div><!-- Reset Password Form -->
 
                     <!-- Signup Form -->
                     <div class="signup form-peice {% if not 'signup' in request.GET %} switched{% endif %}">
                         <form class="signup-form" action="#" method="post">
 
                             <div class="form-group">
-                                <label for="name">نام نام خانوادگی</label>
-                                <input type="text" name="username" id="name" class="name">
-                                <span class="error"></span>
-                            </div>
-
-                            <div class="form-group">
                                 <label for="email">آدرس الکترونیکی</label>
                                 <input type="email" name="emailAdress" id="email" class="email">
                                 <span class="error"></span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="phone">شماره تماس - <small>اختیاری</small></label>
-                                <input type="text" name="phone" id="phone">
                             </div>
 
                             <div class="form-group">
@@ -226,8 +333,16 @@
                             </div>
 
                             <div class="CTA">
-                                <input type="submit" value="ثبت نام" id="submit">
-                                <a href="#" class="switch">من بیت رایتی هستم!</a>
+                                <div class="wrap">
+                                    <button type="submit" class="button">ثبت نام</button>
+                                </div>
+                                <div style="margin-top: 50px">
+                                    <a onclick="switchForm('reset',this)" href="#" class="switch pull-left">فراموشی رمز
+                                        عبور</a>
+                                    <a onclick="switchForm('login',this)" href="#"
+                                       class="switch pull-right">من
+                                        بیت رایتی هستم!</a>
+                                </div>
                             </div>
                         </form>
                     </div><!-- End Signup Form -->
@@ -243,6 +358,7 @@
 
 {% block custom_js %}
     <script src="{% static 'plugins/toastr/toastr.min.js' %}"></script>
+    <script src="{% static 'plugins/cookie/jquery-cookie.js' %}"></script>
     <script>
 
         $(document).ready(function () {
@@ -274,42 +390,7 @@
 
         });
     </script>
-    {% comment %}
     <script>
-
-        $(document).ready(function () {
-            $('.login-info-box').fadeOut();
-            $('.login-show').addClass('show-log-panel');
-        });
-
-
-        $('.login-reg-panel input[type="radio"]').on('change', function () {
-            if ($('#log-login-show').is(':checked')) {
-                $('.register-info-box').fadeOut();
-                $('.login-info-box').fadeIn();
-
-                $('.white-panel').addClass('right-log');
-                $('.register-show').addClass('show-log-panel');
-                $('.login-show').removeClass('show-log-panel');
-
-            } else if ($('#log-reg-show').is(':checked')) {
-                $('.register-info-box').fadeIn();
-                $('.login-info-box').fadeOut();
-
-                $('.white-panel').removeClass('right-log');
-
-                $('.login-show').addClass('show-log-panel');
-                $('.register-show').removeClass('show-log-panel');
-            }
-        });
-
-
-    </script>
-{% endcomment %}
-
-    <script>
-
-
         {% if form.username.errors %}
             {% for error in form.username.errors %}
                 $('#username').siblings('span.error').text('{{error}}').fadeIn().parent('.form-group').addClass('hasError');
@@ -321,6 +402,10 @@
                 $('#password').siblings('span.error').text('{{error}}').fadeIn().parent('.form-group').addClass('hasError');
             {% endfor %}
         {% endif %}
+
+        {% if form.username.value %}$('#username').siblings('label').addClass('active');{% endif %}
+        {% if form.password.value %}$('#password').siblings('label').addClass('active');{% endif %}
+
 
         /*global $, document, window, setTimeout, navigator, console, location*/
         $(document).ready(function () {
@@ -338,8 +423,6 @@
             }
 
             // Label effect
-            {% if form.username.value %}$('#username').siblings('label').addClass('active');{% endif %}
-            {% if form.password.value %}$('#password').siblings('label').addClass('active');{% endif %}
             $('input').focus(function () {
 
                 $(this).siblings('label').addClass('active');
@@ -409,19 +492,6 @@
             });
 
 
-            // form switch
-            $('a.switch').click(function (e) {
-                $(this).toggleClass('active');
-                e.preventDefault();
-
-                if ($('a.switch').hasClass('active')) {
-                    $(this).parents('.form-peice').addClass('switched').siblings('.form-peice').removeClass('switched');
-                } else {
-                    $(this).parents('.form-peice').removeClass('switched').siblings('.form-peice').addClass('switched');
-                }
-            });
-
-
             // Form submit
             $('form.signup-form').submit(function (event) {
                 event.preventDefault();
@@ -460,5 +530,36 @@
 
         });
 
+        // form switch
+        function switchForm(data, self) {
+            $(self).parents('.form-peice').addClass('switched')
+            $('.' + data).removeClass('switched')
+        }
+
+        fillByMemory()
+        $('#submitLogin').on('click', function () {
+
+            if ($('#rememberChkBox').val()) {
+                rememberMe();
+            }
+        });
+
+        function rememberMe() {
+            $.cookie('id', $('#username').val());
+            $.cookie('password', $('#password').val());
+
+        }
+
+        function fillByMemory() {
+            if (!!$.cookie('id'))
+                $('#username').val($.cookie('id'));
+            $('#username').siblings('label').addClass('active')
+
+
+            if (!!$.cookie('password'))
+                $('#password').val($.cookie('password'));
+            $('#password').siblings('label').addClass('active')
+
+        }
     </script>
 {% endblock %}
